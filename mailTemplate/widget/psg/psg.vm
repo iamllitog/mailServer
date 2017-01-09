@@ -1,0 +1,36 @@
+## velocity 宏  乘机人信息模块
+
+<div class="panel">
+    <table class="panel-box-info">
+        <tr>
+            <td class="title" colspan="2">出差人信息</td>
+        </tr>
+        #foreach($psgItem in $order.psgList)
+        #set($psgIndex = $velocityCount)
+        <tr>
+            <td class="w130"><b>出差人$psgIndex姓名：</b></td>
+            <td class="w180">$psgItem.psgname</td>
+            <td class="w70"><b>手机：</b></td>
+            <td>$psgItem.mobile</td>
+        </tr>
+        <tr>
+            <td><b>证件类型及号码：</b></td>
+            <td colspan="3">#if($psgItem.certtype == "NI" || $psgItem.certtype == "1")
+                身份证
+                #elseif($psgItem.certtype == "PP" || $psgItem.certtype == "2")
+                护照
+                #elseif($psgItem.certtype == "ID" || $psgItem.certtype == "3")
+                其他
+                #end
+                #if($psgItem.certno)
+                - $psgItem.certno
+                #end
+            </td>
+        </tr>
+        <tr>
+            <td><b>常客卡：</b></td>
+            <td colspan="3">#if($psgItem.memcard) $psgItem.memcard #end</td>
+        </tr>
+        #end
+    </table>
+</div>

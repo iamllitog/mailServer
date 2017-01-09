@@ -1,0 +1,72 @@
+## 收件人- 审批人
+## 功能 -  行程送审
+## 标题 -  关于【赵静静】【2016-12-06】从【北京首都机场】赴【深圳宝安机场】的差旅审批申请（行程号【200052474】）
+## 主体 -  描述提示语句 + 行程附加信息 + 行程单元（简略） + 公有结束语
+
+#extends("page/layout/frame.vm")
+#block("body")
+##描述提示语句
+#block("discription")
+<table class="description">
+    <tr>
+        <td><b>$apvername，您好</b></td>
+    </tr>
+    <tr>
+        <td class="con1">$order.contactname为$psgname预订了以下行程，请您审阅。</td>
+    </tr>
+    <tr>
+        <td class="td-btn">
+            <a type="button" class="btn btn-lg btn-warning" href="$btnApv">审批</a>
+        </td>
+    </tr>
+</table>
+#end
+
+##如果有附加信息，显示附加信息
+#if($additionList.size() > 0)
+#extends("widget/addition/addition.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/approver/apv.vm")
+#end
+#end
+
+##如果有航班单元数据，循环显示航班单元（简略）
+#if($order.airList.size() > 0)
+#set($airList = $order.airList)
+#extends("widget/flight/flightInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/approver/apv.vm")
+#end
+#end
+
+##如果有酒店单元数据，循环显示酒店单元（详细）
+#if($order.hotelList.size() > 0)
+#set($hotelList = $order.hotelList)
+#extends("widget/hotel/hotelInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/approver/apv.vm")
+#end
+#end
+
+##如果有火车票单元数据，循环显示火车票单元（详细）
+#if($order.trainList.size() > 0)
+#set($trainList = $order.trainList)
+#extends("widget/train/trainInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/approver/apv.vm")
+#end
+#end
+
+##公有结束语
+#block("ending")
+#widget("widget/emailInfo/ending.vm")
+#end
+#end
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/approver/apv.vm")
+#end

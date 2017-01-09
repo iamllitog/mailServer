@@ -1,0 +1,27 @@
+<table class="panel-box-block">
+    <tr>
+        <td><b>航班信息：</b></td>
+        <td>#if($airCell.carrierName) $airCell.carrierName #end  $airCell.carriercode $airCell.flightno</td>
+        <td colspan="2">$airCell.cabintype $airCell.cabincode</td>
+    </tr>
+    <tr>
+        <td class="w70"><b>起飞时间：</b></td>
+        <td>$airCell.takeoffDate  $airCell.takeoffHour</td>
+        <td class="w70"><b>到达时间：</b></td>
+        <td>$airCell.arriveDate  $airCell.arriveHour</td>
+    </tr>
+    <tr>
+        <td><b>起飞地点：</b></td>
+        <td>#if($airCell.takeoffstnName) $airCell.takeoffstnName #end
+            #if($airCell.takeoffterminal) $airCell.takeoffterminal#end</td>
+        <td><b>到达地点：</b></td>
+        <td>#if($airCell.arrivestnName) $airCell.arrivestnName#end
+            #if($airCell.arrivalterminal)$airCell.arrivalterminal#end</td>
+    </tr>
+    <tr>
+        <td><b>飞行时间：</b></td>
+        <td>$airCell.flytime</td>
+        <td> #if($airCell.stopoverno && $airCell.stopoverno > 0)<b>经停城市：</b>#end</td>
+        <td> #if($airCell.stopoverno && $airCell.stopoverno > 0)$airCell.stopover #end</td>
+    </tr>
+</table>

@@ -1,0 +1,45 @@
+## velocity 宏   酒店单元信息-容器
+## $hotelList - 当前酒店单元List集合
+
+#foreach($hotelItem in $hotelList)
+<div class="panel">
+    <table class="panel-box-info">
+        <tr>
+            <td rowspan="2" class="w40 icon" style="background-image: url('http://lg.e-fly365.com/static_cdn/email/img/icon-hotel.jpg');"></td>
+            <td><b>酒店类型：</b>#if($hotelItem.specauth == "Y") 协议酒店 #else 非协议酒店 #end </td>
+            <td colspan="2"><b>入住人：</b>$hotelItem.guestname</td>
+        </tr>
+        <tr>
+            <td style="width:150px"><b>明细：</b>$hotelItem.averagerate * $hotelItem.roomcount间 * $hotelItem.days晚</td>
+            <td style="width:150px"><b>额外费用：</b>0</td>
+            <td style="width:150px"><b>合计：</b>$hotelItem.amount</td>
+        </tr>
+    </table>
+    <table class="panel-box-block">
+        <tr>
+            <td><b>酒店信息：</b></td>
+            <td>$hotelItem.hotelname</td>
+            <td><b>酒店状态：</b></td>
+            <td>$hotelItem.hotelbestate</td>
+        </tr>
+        <tr>
+            <td><b>入住时间：</b></td>
+            <td>$hotelItem.checkindate
+            </td>
+            <td><b>离店时间：</b></td>
+            <td>$hotelItem.checkoutdate
+            </td>
+        </tr>
+        <tr>
+            <td><b>联系方式：</b></td>
+            <td>$hotelItem.hoteltel</td>
+            <td><b>房型：</b></td>
+            <td>$hotelItem.roomtype</td>
+        </tr>
+        <tr>
+            <td><b>酒店地址：</b></td>
+            <td colspan="3">$hotelItem.hoteladdress</td>
+        </tr>
+    </table>
+</div>
+#end

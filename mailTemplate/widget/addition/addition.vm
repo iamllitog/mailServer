@@ -1,0 +1,26 @@
+## velocity 宏   附加项信息 自定义项
+
+<div class="panel">
+    <table class="panel-box-info">
+        <tr>
+            <td class="title" colspan="2">附加信息</td>
+        </tr>
+        #foreach($addItem in $additionList)
+            #set($additionIndex = $velocityCount)
+            #if($additionIndex % 2 == 1)
+                <tr>
+            #end
+            <td><b>$addItem.controlTitleCN #if($addItem.category != "span") ： #end</b>
+                #if($addItem.value && $addItem.value != "" && $addItem.type != "file")
+                    $addItem.value
+                #end
+                #if($addItem.type == "file")
+                    $addItem.title
+                #end
+            </td>
+            #if($additionIndex % 2 != 1)
+                <tr>
+            #end
+        #end
+    </table>
+</div>

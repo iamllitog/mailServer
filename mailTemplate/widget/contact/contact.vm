@@ -1,0 +1,30 @@
+## velocity 宏  联系人信息模块
+
+<div class="panel">
+    <table class="panel-box-info">
+        <tr>
+            <td class="title" colspan="4">联系人信息</td>
+        </tr>
+        <tr>
+            <td class="w110"><b>联系人姓名：</b></td>
+            <td class="w201">$order.contactname</td>
+            <td class="w130"><b>联系人手机：</b></td>
+            <td>$order.contactmobile</td>
+        </tr>
+        <tr>
+            <td class="w110"><b>联系人邮箱：</b></td>
+            <td colspan="3" class="break">$order.contactemail</td>
+        </tr>
+    </table>
+</div>
+
+<div class="box box-primary wrapper-contact">
+    <div class="box-header with-border">
+        <h3 class="box-title"></h3>
+    </div>
+    <div class="box-body">
+        <table class="table">
+
+        </table>
+    </div>
+</div>

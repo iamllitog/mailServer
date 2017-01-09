@@ -1,0 +1,38 @@
+## 收件人- TC
+## 功能 -  预订酒店成功
+## 标题 -  关于【奇虎科技】【招静文】的行程酒店预订成功通知（行程号【200002553】）
+## 主体 -  描述提示语句 + 行程单元（详细）+ 公有结束语
+
+#extends("page/layout/frame.vm")
+#block("body")
+##描述提示语句
+#block("discription")
+<table class="description">
+    <tr>
+        <td><b>您好，</b></td>
+    </tr>
+    <tr>
+        <td class="con1">$psgname的行程酒店预订成功。</td>
+    </tr>
+</table>
+#end
+
+##如果有酒店单元数据，循环显示酒店单元（详细）
+#if($order.hotelList.size() > 0)
+#set($hotelList = $order.hotelList)
+#extends("widget/hotel/hotelInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/TC/hotelSuc.vm")
+#end
+#end
+
+##公有结束语
+#block("ending")
+#widget("widget/emailInfo/ending.vm")
+#end
+#end
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/TC/hotelSuc.vm")
+#end

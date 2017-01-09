@@ -1,0 +1,88 @@
+## 收件人- TC
+## 功能 -  确认提交订单，待订妥
+## 标题 -  关于【航信测试】【赵星星】的待订妥行程通知（行程号【200006900】）
+## 主体 -  描述提示语句 + 行程信息 + fisf乘客信息 + 行程单元（详细）+ 公有结束语
+
+#extends("page/layout/frame.vm")
+#block("body")
+##描述提示语句
+#block("discription")
+<table class="description">
+    <tr>
+        <td><b>您好，</b></td>
+    </tr>
+    <tr>
+        <td class="con1">$psgname已于$submitTime确认提交订单，</td>
+    </tr>
+    <tr>
+        <td class="con2">如果行程已经出票，酒店也确认完毕，请点击已订妥。如果需要转为线下处理，请点击转线下。</td>
+    </tr>
+    <tr>
+        <td class="td-btn">
+            <a href="$btnDeal" class="btn btn-lg btn-warning">处理</a>
+            #if($btnIssueTkt && $btnIssueTkt != "")
+                <a href="$btnIssueTkt" class="btn btn-lg btn-warning">自动出票</a>
+            #end
+        </td>
+    </tr>
+</table>
+#end
+
+##乘机人信息
+#block("psglist")
+#widget("widget/psg/psg.vm")
+#end
+
+##联系人信息
+#block("contact")
+#widget("widget/contact/contact.vm")
+#end
+
+##如果有附加信息，显示附加信息
+#if($additionList.size() > 0)
+#extends("widget/addition/addition.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/TC/toBeOrdered.vm")
+#end
+#end
+
+##如果有航班单元数据，循环显示航班单元（详细）
+#if($order.airList.size() > 0)
+#set($airList = $order.airList)
+#extends("widget/flight/flightInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/TC/toBeOrdered.vm")
+#end
+#end
+
+##如果有酒店单元数据，循环显示酒店单元（详细）
+#if($order.hotelList.size() > 0)
+#set($hotelList = $order.hotelList)
+#extends("widget/hotel/hotelInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/TC/toBeOrdered.vm")
+#end
+#end
+
+##如果有火车票单元数据，循环显示火车票单元（详细）
+#if($order.trainList.size() > 0)
+#set($trainList = $order.trainList)
+#extends("widget/train/trainInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/TC/toBeOrdered.vm")
+#end
+#end
+
+##公有结束语
+#block("ending")
+#widget("widget/emailInfo/ending.vm")
+#end
+#end
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/TC/toBeOrdered.vm")
+#end

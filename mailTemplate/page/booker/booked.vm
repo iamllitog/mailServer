@@ -1,0 +1,82 @@
+## 收件人- 预订人/出差人
+## 功能 -  已订妥 行程单
+## 标题 -  关于【天津中国国际旅行社】 【刘博博】 【2016-12-28】的行程（行程号【200006900】）
+## 主体 -  描述提示语句 + 行程信息 + 乘客信息 + 行程单元（详细）+ 审批历史纪录 + 公有结束语
+
+#extends("page/layout/frame.vm")
+#block("body")
+##描述提示语句
+#block("discription")
+<table class="description">
+    <tr>
+        <td><b>您好</b></td>
+    </tr>
+    <tr>
+        <td class="con1">您的行程已订妥，详细行程信息如下。</td>
+    </tr>
+</table>
+#end
+
+##乘机人信息
+#block("psglist")
+#widget("widget/psg/psg.vm")
+#end
+
+##联系人信息
+#block("contact")
+#widget("widget/contact/contact.vm")
+#end
+
+##如果有附加信息，显示附加信息
+#if($additionList.size() > 0)
+#extends("widget/addition/addition.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/booker/booked.vm")
+#end
+#end
+
+##如果有航班单元数据，循环显示航班单元（详细）
+#if($order.airList.size() > 0)
+#set($airList = $order.airList)
+#extends("widget/flight/flightInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/booker/booked.vm")
+#end
+#end
+
+##如果有酒店单元数据，循环显示酒店单元（详细）
+#if($order.hotelList.size() > 0)
+#set($hotelList = $order.hotelList)
+#extends("widget/hotel/hotelInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/booker/booked.vm")
+#end
+#end
+
+##如果有火车票单元数据，循环显示火车票单元（详细）
+#if($order.trainList.size() > 0)
+#set($trainList = $order.trainList)
+#extends("widget/train/trainInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/booker/booked.vm")
+#end
+#end
+
+##审批历史记录
+#block("apvhistory")
+#widget("widget/apving/apvHistory.vm")
+#end
+
+##公有结束语
+#block("ending")
+#widget("widget/emailInfo/ending.vm")
+#end
+#end
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/booker/booked.vm")
+#end

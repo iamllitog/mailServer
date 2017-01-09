@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+#html("/static/js/require.js")
+    #head()
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>$title</title>
+        <style>@charset "UTF-8";
+/**
+ * email 项目样式
+ */
+* {
+  font-family: "微软雅黑";
+}
+
+#wrapper {
+  width: 700px;
+  margin: auto;
+}
+
+.panel {
+  border: 1px solid #dddddd;
+  border-top: 3px solid #097de0;
+  padding: 16px 20px;
+  margin: 20px 0;
+}
+
+.panel table {
+  width: 660px;
+}
+
+.panel table b {
+  color: #333;
+}
+
+.panel table td {
+  padding: 3px;
+  font-size: 14px;
+}
+
+.panel table td.icon {
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.panel table td.icon-flight {
+  background: url("http://172.30.13.227/static_cdn/email/img/icon-flight.jpg") no-repeat center;
+}
+
+.panel table td.icon-train {
+  background: url("http://172.30.13.227/static_cdn/email/img/icon-train.jpg") no-repeat center;
+}
+
+.panel table td.icon-hotel {
+  background: url("http://172.30.13.227/static_cdn/email/img/icon-hotel.jpg") no-repeat center;
+}
+
+.panel table td.title {
+  color: #097de0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.panel table td.break {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.panel table .w40 {
+  width: 40px;
+  height: 30px;
+}
+
+.panel table .w70 {
+  width: 70px;
+}
+
+.panel table .w90 {
+  width: 90px;
+}
+
+.panel table .w110 {
+  width: 110px;
+}
+
+.panel table .w130 {
+  width: 130px;
+}
+
+.panel table .w200 {
+  width: 110px;
+}
+
+.panel table .w201 {
+  width: 201px;
+}
+
+.panel table .w180 {
+  width: 180px;
+}
+
+.panel table .w228 {
+  width: 228px;
+}
+
+.panel table .panel-thead td {
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.panel table .panel-tbody td {
+  text-align: center;
+}
+
+.panel .panel-box-info {
+  margin-bottom: 10px;
+}
+
+.panel .panel-box-block {
+  border: 1px solid #dddddd;
+  background: #f7f7f7;
+  padding: 10px;
+}
+
+.description {
+  width: 100%;
+}
+
+.description td {
+  padding: 3px 5px;
+}
+
+.description .td-btn {
+  text-align: right;
+  padding: 20px 10px;
+}
+
+.description .btn {
+  background-color: #097de0;
+  padding: 5px 30px;
+  cursor: pointer;
+  border-radius: 3px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.description .btn:hover {
+  background-color: #428bca;
+}
+
+.description .con1 {
+  padding-left: 50px;
+}
+
+.description .con2 {
+  padding-left: 50px;
+  font-size: 14px;
+}
+
+.ending {
+  width: 100%;
+}
+
+.ending td {
+  padding: 3px 5px;
+}
+</style>
+    #end
+    #body()
+        <div id="wrapper" class="">
+            ## 定义邮件主体
+            #block("body")#end
+        </div>
+    #end
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/layout/frame.vm")
+#end

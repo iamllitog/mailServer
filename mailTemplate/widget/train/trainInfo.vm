@@ -1,0 +1,111 @@
+## velocity 宏   火车票单元信息
+## $trainList - 当前火车票单元List集合
+
+#foreach($trainItem in $trainList)
+<div class="panel">
+    <table class="panel-box-info">
+        <tr>
+            <td rowspan="2" class="w40 icon" style="background-image: url('http://lg.e-fly365.com/static_cdn/email/img/icon-train.jpg');"></td>
+            <td><b>乘客：</b>$trainItem.parguestname</td>
+            <td><b>预订方式：</b>
+                #if($trainItem.sysflag == "0")
+                网站
+                #elseif($trainItem.sysflag == "1")
+                差旅桌面
+                #elseif($trainItem.sysflag == "2")
+                差旅随行
+                #end</td>
+            <td><b>预订状态：</b>
+                #if($trainItem.state == "apply")
+                申请中
+                #elseif($trainItem.state == "processing")
+                处理中
+                #elseif($trainItem.state == "success")
+                预订成功
+                #elseif($trainItem.state == "fail" || $trainItem.state == "fail_notickets")
+                预订失败
+                #elseif($trainItem.state == "offline")
+                转线下
+                #elseif($trainItem.state == "refund_req")
+                退票申请中
+                #elseif($trainItem.state == "refund")
+                已退票
+                #elseif($trainItem.state == "deleted")
+                已删除
+                #elseif($trainItem.state == "canceled")
+                已取消
+                #else
+                未知
+                #end
+               </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <table class="panel-box-block">
+        <tr>
+            <td><b>车次信息：</b></td>
+            <td>$trainItem.trainnumber  $trainItem.seatname</td>
+            <td><b>车票价格：</b></td>
+            <td>
+                #if($trainItem.price > 0)
+                $trainItem.price
+                #else
+                0
+                #end
+            </td>
+        </tr>
+        #if($trainItem.transfee && $trainItem.transfee > 0)
+            <tr>
+                <td><b>服务费：</b></td>
+                <td>$trainItem.transfee</td>
+                <td><b>车票总价：</b></td>
+                <td>
+                    #set($trainTotalPrice = $trainItem.transfee + $trainItem.price)
+                    $trainTotalPrice
+                </td>
+            </tr>
+        #end
+        <tr>
+            <td><b>出发时间：</b></td>
+            <td>$trainItem.fromtime</td>
+            <td><b>到达时间：</b></td>
+            <td>$trainItem.totime</td>
+        </tr>
+        <tr>
+            <td><b>出发站：</b></td>
+            <td>$trainItem.fromstn
+                #if($trainItem.fromstntype == "途经")
+                （过）
+                #elseif($trainItem.fromstntype == "起始")
+                （始）
+                #elseif($trainItem.fromstntype == "终点")
+                （终）
+                #end
+            </td>
+            <td><b>到达站：</b></td>
+            <td>$trainItem.tostn
+                #if($trainItem.tostntype == "途经")
+                （过）
+                #elseif($trainItem.tostntype == "起始")
+                （始）
+                #elseif($trainItem.tostntype == "终点")
+                （终）
+                #end
+            </td>
+        </tr>
+        #set($useHour = $trainItem.usetime / 60)
+        #set($useMin = $trainItem.usetime % 60)
+        <tr>
+            <td><b>行驶时间：</b></td>
+            <td>
+                $useHour h $useMin m</td>
+            <td><b></b></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+#end

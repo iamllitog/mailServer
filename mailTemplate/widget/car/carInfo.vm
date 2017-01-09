@@ -1,0 +1,51 @@
+## velocity 宏   专车单元信息
+## $trainList - 当前专车单元List集合
+
+#foreach($carItem in $carList)
+<div class="panel">
+    <table class="panel-box-info">
+        <tr>
+            <td rowspan="2" class="w40 icon-train"></td>
+            <td><b>乘车人：</b>AAA</td>
+            <td><b>手机号：</b>123123123123</td>
+            <td><b>用车类型：</b>123333</td>
+        </tr>
+        <tr>
+            <td><b>用车目的：</b>AAA</td>
+            <td><b>预订方式：</b>AAA</td>
+            <td><b>预估车费：</b>AAA<</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <table class="panel-box-block">
+        <tr>
+            <td><b>车辆信息：</b></td>
+            <td colspan="3">津K123123  大众宝来（公务轿车）  李师傅</td>
+        </tr>
+        <tr>
+            <td><b>出发地点：</b></td>
+            <td>AAA</td>
+            <td><b>到达地点：</b></td>
+            <td>AAA</td>
+        </tr>
+        <tr>
+            <td><b>距离：</b></td>
+            <td>2.5km</td>
+            <td><b>用时：</b></td>
+            #set($useHour = $trainItem.usetime / 60)
+            #set($useMin = $trainItem.usetime % 60)
+            <td>约45分钟</td>
+        </tr>
+        <tr>
+            <td><b>出发时间：</b></td>
+            <td>2016-11-20 12:30:33</td>
+            <td><b></b></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+#end

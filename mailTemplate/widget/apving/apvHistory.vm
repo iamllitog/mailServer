@@ -1,0 +1,40 @@
+## velocity 宏  审批历史记录模块
+#if($apvHistory.size() > 0)
+<div class="panel">
+    <table class="panel-box-info">
+        <tr>
+            <td class="title" colspan="6">审批信息</td>
+        </tr>
+        <tr class="panel-thead">
+            <td>审批级别</td>
+            <td>审批人</td>
+            <td>审批状态</td>
+            <td>审批结果</td>
+            <td>审批意见</td>
+            <td>操作时间</td>
+        </tr>
+        #foreach($apvitem in $apvHistory)
+        <tr class="panel-tbody">
+            <td>$apvitem.apverlevel</td>
+            <td>$apvitem.apvername</td>
+            <td>
+                #if($apvitem.apvstate == "Y" || $apvitem.apvstate == "1")
+                已审批
+                #elseif($apvitem.apvstate == "N" || $apvitem.apvstate == "0")
+                未审批
+                #end
+            </td>
+            <td>
+                #if($apvitem.apvresult == "Y" || $apvitem.apvresult == "1")
+                审批通过
+                #elseif($apvitem.apvresult == "N" || $apvitem.apvresult == "0")
+                审批拒绝
+                #end
+            </td>
+            <td>$apvitem.apvcomment</td>
+            <td>$apvitem.updatetime</td>
+        </tr>
+        #end
+    </table>
+</div>
+#end

@@ -1,0 +1,75 @@
+## 收件人- 预订人
+## 功能 -  审批已被拒绝
+## 标题 -  关于李南南2016-11-20从深圳宝安机场赴广州白云机场的审批拒绝通知（行程号200106031）
+## 主体 -  描述提示语句 + 行程单元（简略） + 审批历史记录 + 公有结束语
+
+#extends("page/layout/frame.vm")
+#block("body")
+##描述提示语句
+#block("discription")
+<table class="description">
+    <tr>
+        <td><b>$order.contactname，您好</b></td>
+    </tr>
+    <tr>
+        <td class="con1">$psgname的行程没有审批通过，</td>
+    </tr>
+    <tr>
+        <td class="con2">审批意见：$rejectreason</td>
+    </tr>
+</table>
+#end
+
+##如果有附加信息，显示附加信息
+#if($additionList.size() > 0)
+#extends("widget/addition/addition.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/booker/apvRefuse.vm")
+#end
+#end
+
+##如果有航班单元数据，循环显示航班单元（简略）
+#if($order.airList.size() > 0)
+#set($airList = $order.airList)
+#extends("widget/flight/flightInfo_small.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/booker/apvRefuse.vm")
+#end
+#end
+
+##如果有酒店单元数据，循环显示酒店单元（详细）
+#if($order.hotelList.size() > 0)
+#set($hotelList = $order.hotelList)
+#extends("widget/hotel/hotelInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/booker/apvRefuse.vm")
+#end
+#end
+
+##如果有火车票单元数据，循环显示火车票单元（详细）
+#if($order.trainList.size() > 0)
+#set($trainList = $order.trainList)
+#extends("widget/train/trainInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/booker/apvRefuse.vm")
+#end
+#end
+
+##审批历史记录
+#block("apvhistory")
+#widget("widget/apving/apvHistory.vm")
+#end
+
+##公有结束语
+#block("ending")
+#widget("widget/emailInfo/ending.vm")
+#end
+#end
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/booker/apvRefuse.vm")
+#end

@@ -1,0 +1,46 @@
+## 收件人- TC
+## 功能 -  自动出票失败
+## 标题 -  关于【奇虎科技】【招静文】的行程出票失败通知（行程号【200002553】）
+## 主体 -  描述提示语句 + 行程单元（详细）+ 公有结束语
+
+#extends("page/layout/frame.vm")
+#block("body")
+##描述提示语句
+#block("discription")
+<table class="description">
+    <tr>
+        <td><b>您好，</b></td>
+    </tr>
+    <tr>
+        <td class="con1">$psgname的行程自动出票失败，</td>
+    </tr>
+    <tr>
+        <td class="con2">请人工帮忙处理，处理完成后请务必点击已订妥，如果需要转为线下处理，请点击转线下。</td>
+    </tr>
+    <tr>
+        <td class="td-btn">
+            <a href="$btnDeal" class="btn btn-lg btn-warning" >处理</a>
+        </td>
+    </tr>
+</table>
+#end
+
+##如果有航班单元数据，循环显示航班单元（详细）
+#if($order.airList.size() > 0)
+#set($airList = $order.airList)
+#extends("widget/flight/flightInfo.vm")
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/TC/ticketFailure.vm")
+#end
+#end
+
+##公有结束语
+#block("ending")
+#widget("widget/emailInfo/ending.vm")
+#end
+#end
+
+  ## auto inject by fis3-preprocess-extlang
+  #require("page/TC/ticketFailure.vm")
+#end

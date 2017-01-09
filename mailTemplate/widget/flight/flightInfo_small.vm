@@ -1,0 +1,71 @@
+## velocity 宏   航空单元信息-容器 其中box包含航班item块 （简略版）
+## $airList - 当前航班单元List集合
+
+#foreach($airItem in $airList)
+#set($airIndex = $velocityCount)
+<div class="panel">
+    <table class="panel-box-info">
+        <tr>
+            <td rowspan="2" class="w40 icon" style="background-image: url('http://lg.e-fly365.com/static_cdn/email/img/icon-flight.jpg');"></td>
+            <td class="w180"><b>乘机人：</b>$airItem.allpsgunitename</td>
+            <td class="w180"><b>机票总价：</b>
+                #set($totalPrice = $airItem.priceVO.ticketprice + $airItem.priceVO.tax)
+                #if($totalPrice > 0)
+                $totalPrice
+                #else
+                0
+                #end</td>
+            <td class="w228"><b>是否违背差旅政策：</b>
+                #if($airItem.policyVO.isContraryPolicy == "Y" || $airItem.policyVO.isContraryPolicy == "1")
+                是
+                #else
+                否
+                #end
+            </td>
+        </tr>
+        #if($airItem.resultInsuranceVO)
+        <tr>
+            <td><b>保险：</b>航空意外险</td>
+            <td colspan="2">$airItem.resultInsuranceVO.insurancename $airItem.resultInsuranceVO.insurancecode</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><b>保费：</b>￥ $airItem.resultInsuranceVO.price * $airItem.resultInsuranceVO.acount /人</td>##（全程2航段。每段￥30）
+            <td colspan="2"><b>最高赔付：</b>￥$airItem.resultInsuranceVO.maxcoverage/航段</td>
+        </tr>
+        #end
+        <tr>
+            #if($airItem.resultInsuranceVO)
+            <td></td>
+            #end
+            <td>
+                #if($airItem.policyVO.lostvolume)
+                <b>错失节约成本：</b>
+                #end
+                #if($airItem.policyVO.lostvolume)
+                $airItem.policyVO.lostvolume
+                #else
+                #end
+            </td>
+            <td colspan="2">#if($airItem.policyVO.isContraryPolicy == "Y" || $airItem.policyVO.isContraryPolicy == "1")
+                <b>违背政策原因：</b>
+                #end
+                #if($airItem.policyVO.missSaving)
+                $airItem.policyVO.missSaving
+                #end</td>
+        </tr>
+        #if($airItem.priceVO.transfee && $airItem.priceVO.transfee > 0)
+        <tr>
+            <td></td>
+            <td><b>服务费：</b>$airItem.priceVO.transfee</td>
+            <td></td>
+            <td></td>
+        </tr>
+        #end
+    </table>
+    ##循环显示航班cell块
+    #foreach($airCell in $airItem.resultSegmentVOList)
+        #widget("widget/flight/flightCell.vm")
+    #end
+</div>
+#end
